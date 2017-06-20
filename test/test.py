@@ -7,9 +7,9 @@ import os, sys, unittest
 pkg_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.insert(0, pkg_root)
 
-from checksum_reader import ChecksumReader
+from checksum_reader import ChecksummingBufferedReader
 
-class TestChecksumReader(unittest.TestCase):
+class TestChecksummingBufferedReader(unittest.TestCase):
 
     FILE_TO_DIGEST = 'test/lorem_ipsum.json'
     SHA1_DIGEST = '39ba467330f87327eefb5a071b8dec213623c4e3'
@@ -25,7 +25,7 @@ class TestChecksumReader(unittest.TestCase):
 
     def test_checksums_after_single_read(self):
         with open(self.FILE_TO_DIGEST, 'rb') as fh:
-            reader = ChecksumReader(fh)
+            reader = ChecksummingBufferedReader(fh)
             reader.read()
             sums = reader.get_checksums()
             self.check_sums(sums)
@@ -34,7 +34,7 @@ class TestChecksumReader(unittest.TestCase):
         statinfo = os.stat(self.FILE_TO_DIGEST)
         chunk_size = statinfo.st_size // 4
         with open(self.FILE_TO_DIGEST, 'rb') as raw_fh:
-            reader = ChecksumReader(raw_fh)
+            reader = ChecksummingBufferedReader(raw_fh)
             while True:
                 buf = reader.read(chunk_size)
                 if not buf:

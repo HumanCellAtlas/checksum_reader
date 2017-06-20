@@ -1,1 +1,1 @@
-from .checksum_reader import ChecksumReader, S3Etag
+from .checksumming_buffered_reader import ChecksummingBufferedReader, S3Etag

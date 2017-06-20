@@ -3,7 +3,7 @@ import crcmod
 from io import BufferedReader
 
 
-class ChecksumReader:
+class ChecksummingBufferedReader:
 
     def __init__(self, *args, **kwargs):
         self._hashers = dict(crc32c=crcmod.predefined.Crc("crc-32c"),
