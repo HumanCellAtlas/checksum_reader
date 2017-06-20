@@ -1,1 +1,1 @@
-from .checksum_reader import ChecksumReader
+from .checksum_reader import ChecksumReader, S3Etag

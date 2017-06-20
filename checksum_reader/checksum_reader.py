@@ -3,19 +3,22 @@ import crcmod
 from io import BufferedReader
 
 
-class ChecksumReader(BufferedReader):
+class ChecksumReader:
 
     def __init__(self, *args, **kwargs):
         self._hashers = dict(crc32c=crcmod.predefined.Crc("crc-32c"),
                              sha1=hashlib.sha1(),
                              sha256=hashlib.sha256(),
                              s3_etag=S3Etag())
-        BufferedReader.__init__(self, *args, **kwargs)
+        self._reader = BufferedReader(*args, **kwargs)
+        self.raw = self._reader.raw
 
     def read(self, size=None):
-        chunk = BufferedReader.read(self, size)
-        for hasher in self._hashers.values():
-            hasher.update(chunk)
+        chunk = self._reader.read(size)
+        print("read", size, "bytes")
+        if chunk:
+            for hasher in self._hashers.values():
+                hasher.update(chunk)
         return chunk
 
     def get_checksums(self):
@@ -23,6 +26,11 @@ class ChecksumReader(BufferedReader):
         checksums.update({name: hasher.hexdigest() for name, hasher in self._hashers.items()})
         return checksums
 
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *args, **kwargs):
+        pass
 
 class S3Etag:
     etag_stride = 64 * 1024 * 1024
