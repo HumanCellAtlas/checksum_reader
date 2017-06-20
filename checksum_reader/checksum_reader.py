@@ -15,7 +15,6 @@ class ChecksumReader:
 
     def read(self, size=None):
         chunk = self._reader.read(size)
-        print("read", size, "bytes")
         if chunk:
             for hasher in self._hashers.values():
                 hasher.update(chunk)
@@ -59,6 +58,6 @@ class S3Etag:
             self._etag_bytes = 0
         if len(self._etag_parts) > 1:
             etag_csum = hashlib.md5(b"".join(self._etag_parts)).hexdigest()
-            return '"{}-{}"'.format(etag_csum, len(self._etag_parts))
+            return '{}-{}'.format(etag_csum, len(self._etag_parts))
         else:
             return self._etag_hasher.hexdigest()
