@@ -31,6 +31,7 @@ class ChecksummingBufferedReader:
     def __exit__(self, *args, **kwargs):
         pass
 
+
 class S3Etag:
     etag_stride = 64 * 1024 * 1024
 

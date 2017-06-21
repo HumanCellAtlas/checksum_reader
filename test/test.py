@@ -7,7 +7,7 @@ import os, sys, unittest
 pkg_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.insert(0, pkg_root)
 
-from checksum_reader import ChecksummingBufferedReader
+from checksumming_io import ChecksummingBufferedReader
 
 class TestChecksummingBufferedReader(unittest.TestCase):
 

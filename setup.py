@@ -4,13 +4,13 @@ import glob
 from setuptools import setup, find_packages
 
 setup(
-    name="checksum_reader",
+    name="checksumming_io",
     version="0.0.1",
-    url='https://github.com/HumanCellAtlas/metadata-reader',
+    url='https://github.com/HumanCellAtlas/checksumming_io',
     license='Apache Software License',
     author='Human Cell Atlas contributors',
     author_email='spierson@chanzuckerberg.com',
-    description='Human Cell Atlas Data Storage System Metadata REader',
+    description='IO buffers that generate checksums',
     long_description=open('README.rst').read(),
     install_requires=[
         'crcmod==1.7'
