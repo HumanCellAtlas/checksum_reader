@@ -18,13 +18,13 @@ setup(
     extras_require={
         ':python_version == "3.6"': ['enum34 >= 1.1.6, < 2']
     },
-    packages=find_packages(exclude=['test']),
+    packages=find_packages(exclude=['tests']),
     scripts=glob.glob('scripts/*'),
     platforms=['MacOS X', 'Posix'],
     # package_data={'hcacli': ['*.json']},
     zip_safe=False,
     include_package_data=True,
-    test_suite='test',
+    test_suite='tests',
     classifiers=[
         'Intended Audience :: Developers',
         'License :: OSI Approved :: Apache Software License',

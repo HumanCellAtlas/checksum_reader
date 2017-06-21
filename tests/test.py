@@ -11,7 +11,7 @@ from checksumming_io import ChecksummingBufferedReader
 
 class TestChecksummingBufferedReader(unittest.TestCase):
 
-    FILE_TO_DIGEST = 'test/lorem_ipsum.json'
+    FILE_TO_DIGEST = 'tests/lorem_ipsum.json'
     SHA1_DIGEST = '39ba467330f87327eefb5a071b8dec213623c4e3'
     SHA256_DIGEST = 'c55de3986267db6fdf1e4e960e2db01781c67f328da26693b9ff4c7387c6e472'
     CRC32C = '842b10aa'
