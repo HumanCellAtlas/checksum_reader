@@ -6,7 +6,7 @@ lint:
 	./setup.py flake8
 
 test: lint
-	coverage run --source=$$(python setup.py --name) ./tests/test*.py
+	coverage run --source=$$(python setup.py --name) -m unittest discover
 
 init_docs:
 	cd docs; sphinx-quickstart
