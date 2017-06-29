@@ -4,8 +4,8 @@
 from __future__ import absolute_import, division, print_function, unicode_literals
 import os, sys, unittest
 
-pkg_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-sys.path.insert(0, pkg_root)
+pkg_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))  # noqa
+sys.path.insert(0, pkg_root)  # noqa
 
 from checksumming_io import ChecksummingSink
 from tests import TEST_FILE, TEST_FILE_CHECKSUMS

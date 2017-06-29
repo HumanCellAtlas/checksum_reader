@@ -1,6 +1,5 @@
 import hashlib
 import crcmod
-from io import BufferedReader
 from .s3_etag import S3Etag
 
 """
