@@ -1,6 +1,6 @@
 SHELL=/bin/bash
 
-constants: hca/api_spec.json
+default: lint test
 
 lint:
 	./setup.py flake8
@@ -19,6 +19,6 @@ install:
 	python setup.py bdist_wheel
 	pip install --upgrade dist/*.whl
 
-.PHONY: test release docs
+.PHONY: default test release docs
 
 include common.mk
