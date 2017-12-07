@@ -40,5 +40,25 @@ class TestChecksummingSink(unittest.TestCase):
         sums = sink.get_checksums()
         self.check_sums(sums)
 
+    def test_hash_function_list_is_configurable(self):
+        sink = ChecksummingSink(hash_functions=('sha1', 's3_etag'))
+        with open(TEST_FILE, 'rb') as fh:
+            data = fh.read()
+            sink.write(data)
+        sums = sink.get_checksums()
+        self.assertEqual(list(sums.keys()), ['sha1', 's3_etag'])
+        self.assertEqual(sums['sha1'], TEST_FILE_CHECKSUMS['sha1'])
+        self.assertEqual(sums['s3_etag'], TEST_FILE_CHECKSUMS['s3_etag'])
+
+        sink = ChecksummingSink(hash_functions=('sha256', 'crc32c'))
+        with open(TEST_FILE, 'rb') as fh:
+            data = fh.read()
+            sink.write(data)
+        sums = sink.get_checksums()
+        self.assertEqual(list(sums.keys()), ['sha256', 'crc32c'])
+        self.assertEqual(sums['sha256'], TEST_FILE_CHECKSUMS['sha256'])
+        self.assertEqual(sums['crc32c'].lower(), TEST_FILE_CHECKSUMS['crc32c'])
+
+
 if __name__ == '__main__':
     unittest.main()
