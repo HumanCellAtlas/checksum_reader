@@ -5,8 +5,8 @@ default: lint test
 lint:
 	./setup.py flake8
 
-test: lint
-	coverage run --source=$$(python setup.py --name) -m unittest discover
+test:
+	coverage run --source=$$(python setup.py --name) -m unittest discover --verbose
 
 init_docs:
 	cd docs; sphinx-quickstart
