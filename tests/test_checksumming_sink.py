@@ -46,7 +46,7 @@ class TestChecksummingSink(unittest.TestCase):
             data = fh.read()
             sink.write(data)
         sums = sink.get_checksums()
-        self.assertEqual(list(sums.keys()), ['sha1', 's3_etag'])
+        self.assertEqual(list(sorted(sums.keys())), sorted(['sha1', 's3_etag']))
         self.assertEqual(sums['sha1'], TEST_FILE_CHECKSUMS['sha1'])
         self.assertEqual(sums['s3_etag'], TEST_FILE_CHECKSUMS['s3_etag'])
 
@@ -55,7 +55,7 @@ class TestChecksummingSink(unittest.TestCase):
             data = fh.read()
             sink.write(data)
         sums = sink.get_checksums()
-        self.assertEqual(list(sums.keys()), ['sha256', 'crc32c'])
+        self.assertEqual(sorted(list(sums.keys())), sorted(['sha256', 'crc32c']))
         self.assertEqual(sums['sha256'], TEST_FILE_CHECKSUMS['sha256'])
         self.assertEqual(sums['crc32c'].lower(), TEST_FILE_CHECKSUMS['crc32c'])
 
